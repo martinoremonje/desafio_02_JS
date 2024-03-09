@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let button = document.getElementById("botton");
+        let resultado = document.querySelector(".resultado");
+
+        const exito = () => {
+            resultado.innerHTML = "<p style='color:green'>Mensaje enviado correctamente!!!</p>"
+        }       
+
+        const limpiarErrores = () => {
+            document.querySelector(".errorNombre").textContent = "";
+            document.querySelector(".errorAsunto").textContent = "";
+            document.querySelector(".errorMensaje").textContent = "";
+
+        }
+
+        const validar = (nombre, asunto, mensaje) => {
+            let pass = true;
+            let nombreV = /[A-Z]/i;
+            if (!nombreV.test(nombre)) {
+                document.querySelector(".errorNombre").textContent = "El nombre es requerido";
+                pass = false;
+            } 
+
+            let asuntoV = /[A-Z]/i;
+            if (!asuntoV.test(asunto)) {
+                document.querySelector(".errorAsunto").textContent = "El asunto es requerido";
+                pass = false;
+            }
+
+            let mensajeV = /[A-Z]/i;
+            if (!mensajeV.test(mensaje)) {
+                document.querySelector(".errorMensaje").textContent = "El mensaje es requerido";
+                pass = false;
+            }
+            return pass;
+        }
+
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            limpiarErrores();
+            let nombre = document.getElementById("nombre").value;
+            let asunto = document.getElementById("asunto").value;
+            let mensaje = document.getElementById("mensaje").value;
+            let resultado = validar(nombre, asunto, mensaje);
+            if(resultado){
+                exito();
+            }
+        });
+    </script>
+</body>
+
+</html>

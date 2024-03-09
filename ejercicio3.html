@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>
+                Resultado: <span class="resultado"></span>
+            </h2>
+            <div>
+                <div>
+                    <div>
+                        <label for="">Valor 1</label>
+                        <input id="valor1" type="text">
+                    </div>
+                    <div>
+                        <label for="">Valor 2</label>
+                        <input id="valor2" type="text">
+                    </div>
+                    <div style="display: flex">
+                        <button id="btn-sumar" type="button">
+                            Sumar
+                        </button>
+                        <button id="btn-restar" type="button">
+                            Restar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let resultado = document.querySelector(".resultado")
+        let btn_sumar = document.getElementById("btn-sumar")
+        let btn_restar = document.getElementById("btn-restar")
+    const sumar = () =>{
+        let valor1 = parseInt(document.getElementById("valor1").value);
+        let valor2 = parseInt(document.getElementById("valor2").value);
+        resultado.textContent = valor1 + valor2;
+    }
+    const restar = () =>{
+        let valor1 = parseInt(document.getElementById("valor1").value);
+        let valor2 = parseInt(document.getElementById("valor2").value);
+        let res = valor1 - valor2;
+        if(res < 1){
+            resultado.textContent = 0;
+        } else {
+            resultado.textContent = res;
+        };
+    }
+
+    btn_sumar.addEventListener("click", function(e){
+        e.preventDefault();
+        sumar();
+    });
+
+    btn_restar.addEventListener("click", function(e){
+        e.preventDefault();
+        restar();
+    });
+
+    </script>
+</body>
+
+</html>
